@@ -1,33 +1,30 @@
 package Builder;
 
 public class DashMealBuilder implements MealBuilder {
-  private String protein;
-  private String carbohydrate;
-  private String vegetables;
-  private String beverage;
+  private Meal meal = new Meal();
 
   @Override
   public void setProtein() {
-    this.protein = "Thịt gà";
+    meal.setProtein("Thịt gà");
   }
 
   @Override
   public void setCarbohydrate() {
-    this.carbohydrate = "Gạo lứt";
+    meal.setCarbohydrate("Gạo lứt");
   }
 
   @Override
   public void setVegetables() {
-    this.vegetables = "Rau xanh";
+    meal.setVegetables("Rau xanh");
   }
 
   @Override
   public void setBeverage() {
-    this.beverage = "Nước ép trái cây";
+    meal.setBeverage("Nước ép trái cây");
   }
 
-  @Override
-  public Meal build() {
-    return new Meal(protein, carbohydrate, vegetables, beverage);
+  // Phương thức này chỉ tồn tại trong class này, không có trong MealBuilder
+  public Meal getMeal() {
+    return meal;
   }
 }

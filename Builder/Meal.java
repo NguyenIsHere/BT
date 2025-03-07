@@ -1,25 +1,36 @@
 package Builder;
 
-// Meal.java - Sản phẩm (Bữa ăn)
 public class Meal {
   private String protein;
   private String carbohydrate;
   private String vegetables;
   private String beverage;
 
-  public Meal(String protein, String carbohydrate, String vegetables, String beverage) {
+  // Setter cho từng thành phần
+  public void setProtein(String protein) {
     this.protein = protein;
+  }
+
+  public void setCarbohydrate(String carbohydrate) {
     this.carbohydrate = carbohydrate;
+  }
+
+  public void setVegetables(String vegetables) {
     this.vegetables = vegetables;
+  }
+
+  public void setBeverage(String beverage) {
     this.beverage = beverage;
   }
 
-  public void showMeal() {
-    System.out.println("🍽 Bữa ăn gồm:");
-    System.out.println("- Protein: " + protein);
-    System.out.println("- Carbohydrate: " + carbohydrate);
-    System.out.println("- Rau củ quả: " + vegetables);
-    System.out.println("- Đồ uống: " + beverage);
-    System.out.println("--------------------------------");
+  // Hiển thị thông tin bữa ăn
+  @Override
+  public String toString() {
+    return "Meal {" +
+        "Protein: '" + protein + '\'' +
+        ", Carbohydrate: '" + carbohydrate + '\'' +
+        ", Vegetables: '" + vegetables + '\'' +
+        ", Beverage: '" + beverage + '\'' +
+        '}';
   }
 }

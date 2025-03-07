@@ -4,19 +4,25 @@ public class Main {
   public static void main(String[] args) {
     Director director = new Director();
 
-    // Builder cho từng loại bữa ăn
-    MealBuilder mediterraneanBuilder = new DiaTrungHaiMealBuilder();
-    MealBuilder dashBuilder = new DashMealBuilder();
-    MealBuilder vegetarianBuilder = new VegetarianMealBuilder();
+    // Tạo Builder cho chế độ ăn Địa Trung Hải
+    DiaTrungHaiMealBuilder dthBuilder = new DiaTrungHaiMealBuilder();
+    director.setBuilder(dthBuilder);
+    director.constructMeal();
+    Meal diaTrungHaiMeal = dthBuilder.getMeal();
+    System.out.println("Đã tạo: " + diaTrungHaiMeal);
 
-    // Tạo chế độ ăn
-    Meal mediterraneanMeal = director.constructMeal(mediterraneanBuilder);
-    Meal dashMeal = director.constructMeal(dashBuilder);
-    Meal vegetarianMeal = director.constructMeal(vegetarianBuilder);
+    // Tạo Builder cho chế độ ăn DASH
+    DashMealBuilder dashMealBuilder = new DashMealBuilder();
+    director.setBuilder(dashMealBuilder);
+    director.constructMeal();
+    Meal dashMeal = dashMealBuilder.getMeal();
+    System.out.println("Đã tạo: " + dashMeal);
 
-    // Hiển thị bữa ăn
-    mediterraneanMeal.showMeal();
-    dashMeal.showMeal();
-    vegetarianMeal.showMeal();
+    // Tạo Builder cho chế độ ăn chay
+    VegetarianMealBuilder vegetarianMealBuilder = new VegetarianMealBuilder();
+    director.setBuilder(vegetarianMealBuilder);
+    director.constructMeal();
+    Meal vegetarianMeal = vegetarianMealBuilder.getMeal();
+    System.out.println("Đã tạo: " + vegetarianMeal);
   }
 }

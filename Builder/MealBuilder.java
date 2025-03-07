@@ -8,6 +8,4 @@ public interface MealBuilder {
   void setVegetables();
 
   void setBeverage();
-
-  Meal build();
 }

@@ -1,11 +1,16 @@
 package Builder;
 
 public class Director {
-  public Meal constructMeal(MealBuilder builder) {
+  private MealBuilder builder;
+
+  public void setBuilder(MealBuilder builder) {
+    this.builder = builder;
+  }
+
+  public void constructMeal() {
     builder.setProtein();
     builder.setCarbohydrate();
     builder.setVegetables();
     builder.setBeverage();
-    return builder.build();
   }
 }

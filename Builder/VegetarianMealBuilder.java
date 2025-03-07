@@ -1,33 +1,30 @@
 package Builder;
 
 public class VegetarianMealBuilder implements MealBuilder {
-  private String protein;
-  private String carbohydrate;
-  private String vegetables;
-  private String beverage;
+  private Meal meal = new Meal();
 
   @Override
   public void setProtein() {
-    this.protein = "Đậu hũ";
+    meal.setProtein("Đậu hũ");
   }
 
   @Override
   public void setCarbohydrate() {
-    this.carbohydrate = "Khoai tây";
+    meal.setCarbohydrate("Khoai tây");
   }
 
   @Override
   public void setVegetables() {
-    this.vegetables = "Rau củ hỗn hợp";
+    meal.setVegetables("Rau củ hỗn hợp");
   }
 
   @Override
   public void setBeverage() {
-    this.beverage = "Nước lọc";
+    meal.setBeverage("Nước lọc");
   }
 
-  @Override
-  public Meal build() {
-    return new Meal(protein, carbohydrate, vegetables, beverage);
+  // Phương thức này chỉ tồn tại trong class này, không có trong MealBuilder
+  public Meal getMeal() {
+    return meal;
   }
 }

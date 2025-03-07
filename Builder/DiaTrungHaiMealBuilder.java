@@ -1,33 +1,30 @@
 package Builder;
 
 public class DiaTrungHaiMealBuilder implements MealBuilder {
-    private String protein;
-    private String carbohydrate;
-    private String vegetables;
-    private String beverage;
+    private Meal meal = new Meal();
 
     @Override
     public void setProtein() {
-        this.protein = "Thịt cá";
+        meal.setProtein("Thịt cá");
     }
 
     @Override
     public void setCarbohydrate() {
-        this.carbohydrate = "Dầu ô liu";
+        meal.setCarbohydrate("Dầu ô liu");
     }
 
     @Override
     public void setVegetables() {
-        this.vegetables = "Rau quả tươi";
+        meal.setVegetables("Rau quả tươi");
     }
 
     @Override
     public void setBeverage() {
-        this.beverage = "Rượu vang đỏ";
+        meal.setBeverage("Rượu vang đỏ");
     }
 
-    @Override
-    public Meal build() {
-        return new Meal(protein, carbohydrate, vegetables, beverage);
+    // Phương thức này chỉ tồn tại trong class này, không có trong MealBuilder
+    public Meal getMeal() {
+        return meal;
     }
 }
