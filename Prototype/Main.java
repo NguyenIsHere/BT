@@ -1,6 +1,6 @@
 package Prototype;
 
-public class EntertainmentSystem {
+public class Main {
   public static void main(String[] args) {
     // Tạo đối tượng Movie ban đầu
     Movie originalMovie = new Movie("Inception", 148, "Sci-Fi");

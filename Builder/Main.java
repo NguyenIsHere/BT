@@ -6,22 +6,22 @@ public class Main {
 
     // Tạo Builder cho chế độ ăn Địa Trung Hải
     DiaTrungHaiMealBuilder dthBuilder = new DiaTrungHaiMealBuilder();
-    director.setBuilder(dthBuilder);
-    director.constructMeal();
+    // director.setBuilder(dthBuilder);
+    director.constructMeal(dthBuilder);
     Meal diaTrungHaiMeal = dthBuilder.getMeal();
     System.out.println("Đã tạo: " + diaTrungHaiMeal);
 
     // Tạo Builder cho chế độ ăn DASH
     DashMealBuilder dashMealBuilder = new DashMealBuilder();
-    director.setBuilder(dashMealBuilder);
-    director.constructMeal();
+    // director.setBuilder(dashMealBuilder);
+    director.constructMeal(dashMealBuilder);
     Meal dashMeal = dashMealBuilder.getMeal();
     System.out.println("Đã tạo: " + dashMeal);
 
     // Tạo Builder cho chế độ ăn chay
     VegetarianMealBuilder vegetarianMealBuilder = new VegetarianMealBuilder();
-    director.setBuilder(vegetarianMealBuilder);
-    director.constructMeal();
+    // director.setBuilder(vegetarianMealBuilder);
+    director.constructMeal(vegetarianMealBuilder);
     Meal vegetarianMeal = vegetarianMealBuilder.getMeal();
     System.out.println("Đã tạo: " + vegetarianMeal);
   }

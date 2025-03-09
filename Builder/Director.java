@@ -7,7 +7,7 @@ public class Director {
     this.builder = builder;
   }
 
-  public void constructMeal() {
+  public void constructMeal(MealBuilder builder) {
     builder.setProtein();
     builder.setCarbohydrate();
     builder.setVegetables();
