@@ -4,43 +4,41 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class PatientRecordManager {
-  // Biến static để lưu thể hiện duy nhất của Singleton
-  private static PatientRecordManager instance;
+  private static volatile PatientRecordManager instance; // Đảm bảo thread-safe
+  private Map<String, Patient> records; // Lưu danh sách bệnh nhân
 
-  // Dữ liệu lưu trữ hồ sơ bệnh nhân (giả lập bằng HashMap)
-  private Map<String, String> patientRecords;
-
-  // Hàm tạo private để ngăn chặn khởi tạo từ bên ngoài
   private PatientRecordManager() {
-    patientRecords = new HashMap<>();
+    records = new HashMap<>();
   }
 
-  // Phương thức để lấy thể hiện duy nhất (Singleton)
-  public static synchronized PatientRecordManager getInstance() {
+  public static PatientRecordManager getInstance() {
     if (instance == null) {
-      instance = new PatientRecordManager();
+      synchronized (PatientRecordManager.class) { // Đảm bảo thread-safe
+        if (instance == null) {
+          instance = new PatientRecordManager();
+        }
+      }
     }
     return instance;
   }
 
-  // Thêm hoặc cập nhật hồ sơ bệnh nhân
-  public void addOrUpdatePatient(String patientId, String record) {
-    patientRecords.put(patientId, record);
-    System.out.println("Patient profile [" + patientId + "] updated.");
+  // Thêm bệnh nhân mới
+  public void addPatient(Patient patient) {
+    records.put(patient.getId(), patient);
   }
 
-  // Truy vấn hồ sơ bệnh nhân
-  public String getPatientRecord(String patientId) {
-    return patientRecords.getOrDefault(patientId, "⚠ Patient profile not found!");
-  }
-
-  // Xóa hồ sơ bệnh nhân
-  public void deletePatientRecord(String patientId) {
-    if (patientRecords.containsKey(patientId)) {
-      patientRecords.remove(patientId);
-      System.out.println("Patient profile [" + patientId + "] deleted.");
+  // Cập nhật hồ sơ bệnh nhân
+  public void updateMedicalHistory(String patientId, String newHistory) {
+    Patient patient = records.get(patientId);
+    if (patient != null) {
+      patient.updateMedicalHistory(newHistory);
     } else {
-      System.out.println("⚠ Not found patient profile [" + patientId + "] to delete.");
+      System.out.println("Cannot find patined with ID: " + patientId);
     }
+  }
+
+  // Truy vấn bệnh nhân
+  public Patient getPatient(String patientId) {
+    return records.get(patientId);
   }
 }

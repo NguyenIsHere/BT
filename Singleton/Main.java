@@ -2,27 +2,33 @@ package Singleton;
 
 public class Main {
   public static void main(String[] args) {
-    // Lấy instance của PatientRecordManager (Singleton)
+    // Lấy thể hiện duy nhất của PatientRecordManager
     PatientRecordManager manager = PatientRecordManager.getInstance();
 
-    // Tạo bác sĩ và y tá
-    Doctor doctor1 = new Doctor("Tran Van A");
-    Nurse nurse1 = new Nurse("Nguyen Thi B");
+    // Tạo một số bệnh nhân
+    Patient p1 = new Patient("BN123", "Nguyen Van A", 45, "High blood pressure");
+    Patient p2 = new Patient("BN124", "Tran Thi B", 32, "Diabetes");
 
-    // Bác sĩ cập nhật hồ sơ bệnh nhân
-    doctor1.updatePatientRecord("BN123", "Medical history: High blood pressure, currently taking medication A.");
+    // Thêm bệnh nhân vào hệ thống
+    manager.addPatient(p1);
+    manager.addPatient(p2);
 
-    // Y tá truy vấn hồ sơ bệnh nhân
-    nurse1.viewPatientRecord("BN123");
+    // Truy cập thông tin bệnh nhân
+    System.out.println("\nBefore update:");
+    System.out.println(manager.getPatient("BN123"));
+    System.out.println(manager.getPatient("BN124"));
 
-    // Kiểm tra Singleton: Bác sĩ khác cũng thấy cùng một dữ liệu
-    Doctor doctor2 = new Doctor("Le Van C");
-    doctor2.viewPatientRecord("BN123");
+    // Cập nhật hồ sơ bệnh nhân
+    manager.updateMedicalHistory("BN123", "High blood pressure, start taking medicine");
+    manager.updateMedicalHistory("BN124", "Diabetes, need to control diet");
 
-    // Xóa hồ sơ bệnh nhân
-    manager.deletePatientRecord("BN123");
+    // Hiển thị lại hồ sơ bệnh nhân sau khi cập nhật
+    System.out.println("\nAfter update:");
+    System.out.println(manager.getPatient("BN123"));
+    System.out.println(manager.getPatient("BN124"));
 
-    // Thử truy vấn lại sau khi xóa
-    nurse1.viewPatientRecord("BN123");
+    // Kiểm tra Singleton có hoạt động đúng không
+    PatientRecordManager anotherInstance = PatientRecordManager.getInstance();
+    System.out.println("\nCheck singleton: " + (manager == anotherInstance) + "\n");
   }
 }
