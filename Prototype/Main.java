@@ -2,21 +2,24 @@ package Prototype;
 
 public class Main {
   public static void main(String[] args) {
-    // Tạo các chương trình ban đầu
-    Movie movie = new Movie("Inception", 148, "Action, Adventure, Sci-Fi");
-    TVShow tvShow = new TVShow("Breaking Bad", 60, "Crime, Drama, Thriller");
-    MusicEvent musicEvent = new MusicEvent("Coachella 2025", 180, "Music Festival");
+    // Tạo registry
+    ProgramRegistry programRegistry = new ProgramRegistry();
 
-    // Nhân bản các chương trình
-    EntertainmentProgram clonedMovie = movie.clone();
-    EntertainmentProgram clonedTVShow = tvShow.clone();
-    EntertainmentProgram clonedMusicEvent = musicEvent.clone();
+    // Đăng ký các chương trình gốc
+    programRegistry.addProgram("movie", new Movie("Inception", 148, "Action, Adventure, Sci-Fi"));
+    programRegistry.addProgram("tvShow", new TVShow("Breaking Bad", 60, "Crime, Drama, Thriller"));
+    programRegistry.addProgram("musicEvent", new MusicEvent("Coachella 2025", 180, "Music Festival"));
+
+    // Nhân bản các chương trình từ registry
+    EntertainmentProgram clonedMovie = programRegistry.cloneProgram("movie");
+    EntertainmentProgram clonedTVShow = programRegistry.cloneProgram("tvShow");
+    EntertainmentProgram clonedMusicEvent = programRegistry.cloneProgram("musicEvent");
 
     // Hiển thị thông tin
     System.out.println("\nOriginal programs:");
-    movie.displayInfo();
-    tvShow.displayInfo();
-    musicEvent.displayInfo();
+    programRegistry.cloneProgram("movie").displayInfo();
+    programRegistry.cloneProgram("tvShow").displayInfo();
+    programRegistry.cloneProgram("musicEvent").displayInfo();
 
     System.out.println("\nCloned programs:");
     clonedMovie.displayInfo();
